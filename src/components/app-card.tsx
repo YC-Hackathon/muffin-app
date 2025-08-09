@@ -44,7 +44,7 @@ export function AppCard({ id, name, createdAt, onDelete }: AppCardProps) {
     <Card className="bg-card border border-border p-4 sm:p-6 rounded-2xl h-32 sm:h-36 relative w-full transition-all duration-200 hover:border-accent/20 hover:bg-accent/2 group shadow-lg hover:shadow-xl">
       <Link href={`/app/${id}`} className="cursor-pointer block h-full">
         <CardHeader className="p-0 h-full flex flex-col justify-between">
-          <CardTitle className="text-base sm:text-lg truncate text-foreground group-hover:text-foreground transition-colors">
+          <CardTitle className="text-base sm:text-lg text-foreground group-hover:text-foreground transition-colors leading-tight break-words overflow-hidden">
             {name}
           </CardTitle>
           <CardDescription className="text-sm text-foreground-tertiary">
@@ -60,7 +60,7 @@ export function AppCard({ id, name, createdAt, onDelete }: AppCardProps) {
               <MoreVertical className="h-4 w-4 text-foreground-secondary" />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="bg-card border border-border rounded-xl shadow-xl">
+          <DropdownMenuContent align="end" className="bg-background border border-border rounded-xl shadow-xl">
             <DropdownMenuItem onClick={handleOpen} className="text-foreground-secondary hover:text-foreground hover:bg-accent/5">
               <ExternalLink className="mr-2 h-4 w-4" />
               Open

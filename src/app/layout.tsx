@@ -11,7 +11,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "swap",
+  display: "block",
   preload: true,
 });
 
@@ -35,16 +35,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <head>
-        <script
+      <head>
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
+        {/* <script
           crossOrigin="anonymous"
           src="//unpkg.com/react-scan/dist/auto.global.js"
-        />
-      </head> */}
+        /> */}
+      </head>
       <body
         className={cn(
           `${ibmPlexMono.variable} antialiased font-mono`
         )}
+        style={{ fontFamily: 'var(--font-ibm-plex-mono), "IBM Plex Mono", monospace' }}
       >
         <ThemeProvider
           attribute="class"
