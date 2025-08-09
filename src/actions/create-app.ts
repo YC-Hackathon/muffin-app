@@ -59,6 +59,7 @@ export async function createApp({
       .values({
         gitRepo: repo.repoId,
         name: initialMessage,
+        baseId: templateId, // Store the template ID for later identification
       })
       .returning();
 

@@ -19,23 +19,26 @@ export interface ZappEmbedConfig {
 /**
  * Create a Zapp.run project URL from a repository
  */
-export function createZappGitHubProject(repoId: string): ZappProject {
-  // For Flutter projects, use the local flutter-template-demo structure
-  if (repoId.includes('flutter') || shouldUseZappPreview(detectTemplateFromRepo(repoId) || '')) {
-    // Use a basic Flutter template from Zapp.run for now
-    // This will show the Flutter preview interface
-    const url = `https://zapp.run/edit/flutter`;
+export function createZappGitHubProject(repoId: string, templateId?: string): ZappProject {
+  // For Flutter projects, use the configured GitHub repository URL from templates
+  if (templateId === 'flutter') {
+    // Use the Flutter template repository from our configuration
+    const githubPath = 'bitrise-dev/flutter-sample-app-hello-world';
+    
+    console.log('createZappGitHubProject Debug - Flutter template, using GitHub path:', githubPath);
+    
+    const url = `https://zapp.run/github/${githubPath}`;
     const embedUrl = generateEmbedUrl(url);
     
     return {
       id: repoId,
       url,
       embedUrl,
-      type: 'direct'
+      type: 'github'
     };
   }
   
-  // Convert freestyle repo ID to GitHub path format for other repos
+  // For other projects, try to extract from repo ID (fallback)
   const githubPath = repoId.replace(/^freestyle-/, ''); // Remove freestyle prefix if present
   
   const url = `https://zapp.run/github/${githubPath}`;
@@ -83,9 +86,19 @@ export function createZappIframe(project: ZappProject, config: ZappEmbedConfig =
 }
 
 /**
- * Detect template type from repository URL
+ * Detect template type from repository URL or Freestyle repository ID
  */
 export function detectTemplateFromRepo(repoUrl: string): string | null {
+  // For Freestyle UUIDs, we need a different approach
+  // Check if it's a UUID (Freestyle repository ID)
+  const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  if (uuidRegex.test(repoUrl)) {
+    // For UUIDs, we can't determine the template type from the ID alone
+    // This will be handled by the baseId fallback in WebView
+    console.log('detectTemplateFromRepo Debug - UUID detected, cannot determine template from ID:', repoUrl);
+    return null;
+  }
+  
   // Match against known template repositories
   const templateRepoMap: Record<string, string> = {
     'freestyle-base-nextjs-shadcn': 'nextjs',

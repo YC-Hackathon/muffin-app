@@ -16,16 +16,21 @@ export default function ZappView(props: {
   baseId: string;
   appId: string;
   domain?: string;
+  templateId?: string;
 }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [zappProject, setZappProject] = useState<ZappProject | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     // Create Zapp.run project from repository
-    const project = createZappGitHubProject(props.repo);
+    const project = createZappGitHubProject(props.repo, props.templateId);
+    console.log('ZappView Debug - Repository:', props.repo);
+    console.log('ZappView Debug - Template ID:', props.templateId);
+    console.log('ZappView Debug - Generated Project:', project);
     setZappProject(project);
-  }, [props.repo]);
+  }, [props.repo, props.templateId]);
 
   const handleRefresh = () => {
     if (iframeRef.current) {
@@ -58,6 +63,9 @@ export default function ZappView(props: {
   }
 
   const embedUrl = generateEmbedUrl(zappProject.url, FLUTTER_ZAPP_CONFIG);
+  console.log('ZappView Debug - Base URL:', zappProject.url);
+  console.log('ZappView Debug - Embed URL:', embedUrl);
+  console.log('ZappView Debug - Flutter Config:', FLUTTER_ZAPP_CONFIG);
 
   return (
     <div className="flex flex-col overflow-hidden h-screen border-l transition-opacity duration-700 mt-[2px]">
@@ -90,7 +98,7 @@ export default function ZappView(props: {
       </div>
       
       <div className="flex-1 relative">
-        {isLoading && (
+        {isLoading && !hasError && (
           <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-10">
             <div className="text-center">
               <div>Loading Flutter App</div>
@@ -98,6 +106,28 @@ export default function ZappView(props: {
                 Compiling with Zapp.run...
               </div>
               <div className="loader mt-2"></div>
+            </div>
+          </div>
+        )}
+        
+        {hasError && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-10">
+            <div className="text-center">
+              <div className="text-red-600 font-semibold">Preview Error</div>
+              <div className="text-xs text-muted-foreground mt-1">
+                Failed to load Zapp.run preview
+              </div>
+              <div className="text-xs text-muted-foreground mt-2">
+                URL: {embedUrl}
+              </div>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={() => window.open(zappProject.url, '_blank')}
+                className="mt-3"
+              >
+                Open in Zapp.run
+              </Button>
             </div>
           </div>
         )}
@@ -114,7 +144,11 @@ export default function ZappView(props: {
           title="Flutter App Preview"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           onLoad={() => setIsLoading(false)}
-          onError={() => setIsLoading(false)}
+          onError={() => {
+            console.error('ZappView Debug - Iframe failed to load');
+            setIsLoading(false);
+            setHasError(true);
+          }}
         />
       </div>
     </div>

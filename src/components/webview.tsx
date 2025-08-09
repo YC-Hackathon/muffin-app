@@ -22,9 +22,31 @@ export default function WebView(props: {
   // Always call hooks at the top level
   const devServerRef = useRef<FreestyleDevServerHandle>(null);
 
-  // Detect if this is a Flutter project
-  const templateId = detectTemplateFromRepo(props.repo);
-  const useZappPreview = templateId ? shouldUseZappPreview(templateId) : false;
+  // Use baseId as the template ID (stored during app creation)
+  // For older apps or UUID repos, we need a different approach
+  let templateId = props.baseId;
+  
+  // For debugging: let's manually detect Flutter for now
+  // TODO: This is a temporary fix for existing apps
+  const isFlutterForced = process.env.NODE_ENV === 'development' && 
+    (props.baseId === 'nextjs-dkjfgdf' || !props.baseId); // Default baseId means it might be an old app
+  
+  if (isFlutterForced) {
+    console.log('WebView Debug - Checking if this might be a Flutter app...');
+    // You can manually set this to 'flutter' to test existing apps
+    // templateId = 'flutter'; // Uncomment this line to force Flutter preview for testing
+  }
+  
+  if (!templateId || templateId === 'nextjs-dkjfgdf') {
+    templateId = detectTemplateFromRepo(props.repo) || 'nextjs';
+  }
+  
+  const useZappPreview = shouldUseZappPreview(templateId);
+  
+  // Debug logging
+  console.log('WebView Debug - Repository:', props.repo);
+  console.log('WebView Debug - Base ID (Template):', props.baseId);
+  console.log('WebView Debug - Should Use Zapp Preview:', useZappPreview);
 
   // Default behavior for other frameworks
   function requestDevServer({ repoId }: { repoId: string }) {
@@ -39,6 +61,7 @@ export default function WebView(props: {
         baseId={props.baseId}
         appId={props.appId}
         domain={props.domain}
+        templateId={templateId}
       />
     );
   }

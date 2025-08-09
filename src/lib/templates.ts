@@ -19,7 +19,7 @@ export const templates: Record<
   },
   flutter: {
     name: "Flutter",
-    repo: "https://github.com/bitrise-dev/flutter-sample-app-hello-world",
+    repo: "https://github.com/YC-Hackathon/muffin-flutter-template",
     logo: "/logos/flutter.svg",
   },
 };
