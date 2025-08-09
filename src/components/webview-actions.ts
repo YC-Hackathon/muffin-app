@@ -3,19 +3,20 @@
 import { freestyle } from "@/lib/freestyle";
 
 export async function requestDevServer({ repoId }: { repoId: string }) {
+  // Use the standard Freestyle API - it only accepts repoId
   const {
     ephemeralUrl,
     devCommandRunning,
     installCommandRunning,
-    codeServerUrl,
+    codeServerUrl
   } = await freestyle.requestDevServer({
-    repoId: repoId,
+    repoId: repoId
   });
 
   return {
     ephemeralUrl,
     devCommandRunning: true,
     installCommandRunning: false,
-    codeServerUrl,
+    codeServerUrl
   };
 }

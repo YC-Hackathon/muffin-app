@@ -5,21 +5,21 @@ export const templates: Record<
   nextjs: {
     name: "Next.js",
     repo: "https://github.com/freestyle-sh/freestyle-base-nextjs-shadcn",
-    logo: "/logos/next.svg",
+    logo: "/logos/next.svg"
   },
   vite: {
     name: "React Vite",
     repo: "https://github.com/freestyle-sh/freestyle-base-vite-react-typescript-swc",
-    logo: "/logos/vite.svg",
+    logo: "/logos/vite.svg"
   },
   expo: {
     name: "Expo",
     repo: "https://github.com/freestyle-sh/freestyle-expo",
-    logo: "/logos/expo.svg",
+    logo: "/logos/expo.svg"
   },
   flutter: {
     name: "Flutter",
     repo: "https://github.com/YC-Hackathon/muffin-flutter-template",
-    logo: "/logos/flutter.svg",
-  },
+    logo: "/logos/flutter.svg"
+  }
 };

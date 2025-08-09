@@ -4,14 +4,13 @@ import { requestDevServer as requestDevServerInner } from "./webview-actions";
 import "./loader.css";
 import {
   FreestyleDevServer,
-  FreestyleDevServerHandle,
+  FreestyleDevServerHandle
 } from "freestyle-sandboxes/react/dev-server";
 import { useRef } from "react";
 import { Button } from "./ui/button";
 import { RefreshCwIcon } from "lucide-react";
 import { ShareButton } from "./share-button";
-import { detectTemplateFromRepo, shouldUseZappPreview } from "@/lib/zapp";
-import ZappView from "./zapp-view";
+import { detectTemplateFromRepo } from "@/lib/zapp";
 
 export default function WebView(props: {
   repo: string;
@@ -25,50 +24,19 @@ export default function WebView(props: {
   // Use baseId as the template ID (stored during app creation)
   // For older apps or UUID repos, we need a different approach
   let templateId = props.baseId;
-  
-  // For debugging: let's manually detect Flutter for now
-  // TODO: This is a temporary fix for existing apps
-  const isFlutterForced = process.env.NODE_ENV === 'development' && 
-    (props.baseId === 'nextjs-dkjfgdf' || !props.baseId); // Default baseId means it might be an old app
-  
-  if (isFlutterForced) {
-    console.log('WebView Debug - Checking if this might be a Flutter app...');
-    // You can manually set this to 'flutter' to test existing apps
-    // templateId = 'flutter'; // Uncomment this line to force Flutter preview for testing
-  }
-  
-  if (!templateId || templateId === 'nextjs-dkjfgdf') {
-    templateId = detectTemplateFromRepo(props.repo) || 'nextjs';
-  }
-  
-  const useZappPreview = shouldUseZappPreview(templateId);
-  
-  // Debug logging
-  console.log('WebView Debug - Repository:', props.repo);
-  console.log('WebView Debug - Base ID (Template):', props.baseId);
-  console.log('WebView Debug - Should Use Zapp Preview:', useZappPreview);
 
-  // Default behavior for other frameworks
+  if (!templateId || templateId === "nextjs-dkjfgdf") {
+    templateId = detectTemplateFromRepo(props.repo) || "nextjs";
+  }
+
+  // Default behavior for all frameworks - use FreestyleDevServer
   function requestDevServer({ repoId }: { repoId: string }) {
     return requestDevServerInner({ repoId });
   }
 
-  // If Flutter project, use Zapp.run preview
-  if (useZappPreview) {
-    return (
-      <ZappView
-        repo={props.repo}
-        baseId={props.baseId}
-        appId={props.appId}
-        domain={props.domain}
-        templateId={templateId}
-      />
-    );
-  }
-
   return (
-    <div className="flex flex-col overflow-hidden h-screen border-l transition-opacity duration-700 mt-[2px]">
-      <div className="h-12 border-b border-gray-200 items-center flex px-2 bg-background sticky top-0 justify-end gap-2">
+    <div className='flex flex-col overflow-hidden h-screen border-l transition-opacity duration-700 mt-[2px]'>
+      <div className='h-12 border-b border-gray-200 items-center flex px-2 bg-background sticky top-0 justify-end gap-2'>
         <Button
           variant={"ghost"}
           size={"icon"}
@@ -84,13 +52,19 @@ export default function WebView(props: {
         repoId={props.repo}
         loadingComponent={({ iframeLoading, devCommandRunning }) =>
           !devCommandRunning && (
-            <div className="flex items-center justify-center h-full">
+            <div className='flex items-center justify-center h-full'>
               <div>
-                <div className="text-center">
-                  {iframeLoading ? "JavaScript Loading" : "Starting VM"}
+                <div className='text-center'>
+                  {templateId === "flutter"
+                    ? iframeLoading
+                      ? "Flutter Loading"
+                      : "Setting up Flutter VM"
+                    : iframeLoading
+                      ? "JavaScript Loading"
+                      : "Starting VM"}
                 </div>
                 <div>
-                  <div className="loader"></div>
+                  <div className='loader'></div>
                 </div>
               </div>
             </div>

@@ -30,4 +30,17 @@ Tips for games:
 
 NextJS tips:
 - Don't forget to put "use client" at the top of all the files that need it, otherwise they the page will just error.
+
+Flutter tips:
+- When creating Flutter apps, start with a simple structure based on the Muffin Template pattern
+- Use Material Design 3 with ColorScheme.fromSeed(seedColor: Colors.deepPurple)
+- Structure your main app as: MyApp (StatelessWidget) -> MyHomePage (StatefulWidget)
+- Include proper app titles like "Muffin Template" or customize based on user request
+- Use modern Flutter patterns: super.key constructors, Material 3 theming, useMaterial3: true
+- Start with basic widgets and build incrementally: Scaffold, AppBar, Center, Column layouts
+- For state management, start with setState() for simple cases, consider Provider/Riverpod for complex apps
+- Always include proper imports: import 'package:flutter/material.dart' at minimum
+- Use SizedBox for spacing between widgets rather than Container with fixed heights
+- Follow Flutter naming conventions: class names in PascalCase, variables in camelCase
+- When building UI, show placeholder content first so user can see immediate results
 `;

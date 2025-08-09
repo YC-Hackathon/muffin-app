@@ -1,49 +1,42 @@
-# Adorable Flutter Template
+# Flutter Hello World Template
 
-This is the base Flutter template for Adorable - an AI-powered app builder.
+This is a Flutter template designed to work with Freestyle Sandboxes. It automatically sets up the Flutter SDK and runs a simple Hello World app.
+
+## How it works
+
+1. **Automatic Setup**: The `setup-flutter.sh` script automatically installs Flutter SDK when the project starts
+2. **Web Development**: Configured to run Flutter web apps with hot reload
+3. **Zero Configuration**: No manual setup required - everything happens automatically
+
+## Scripts
+
+- `npm install` - Installs Flutter SDK and gets dependencies
+- `npm run dev` - Starts the Flutter web development server
+- `npm run build` - Builds the Flutter web app for production
+- `npm run doctor` - Runs Flutter doctor to check installation
+
+## Manual Commands
+
+If you want to run Flutter commands directly:
+
+```bash
+# Add Flutter to PATH
+export PATH="$PATH:/opt/flutter/bin"
+
+# Run Flutter commands
+flutter pub get
+flutter run -d web-server --web-hostname 0.0.0.0 --web-port 8080
+flutter doctor
+```
 
 ## Features
 
-- ✨ Modern Flutter 3.24+ with Material 3 design
-- 🎯 Optimized for web deployment and Zapp.run integration  
-- 📱 Responsive design that works on mobile and desktop
-- 🔧 Essential dependencies pre-configured
-- 🚀 Ready to deploy with zero configuration
-
-## Dependencies
-
-- `flutter`: Core Flutter SDK
-- `http`: For API calls and network requests
-- `provider`: State management solution
-- `cupertino_icons`: iOS-style icons
+- Simple Hello World Flutter app
+- Material Design 3 theme
+- Hot reload support
+- Responsive design
+- Ready for AI code generation and modification
 
 ## Development
 
-This template is designed to work seamlessly with:
-- **Adorable AI Builder**: AI-powered code generation and modification
-- **Zapp.run**: Browser-based Flutter development and preview
-- **Freestyle Sandboxes**: Cloud development environment
-
-## Getting Started
-
-1. This template is automatically configured when you create a new Flutter app with Adorable
-2. The AI assistant will help you build and modify your app
-3. Preview your changes instantly in the browser via Zapp.run integration
-
-## Structure
-
-```
-lib/
-├── main.dart          # App entry point with sample counter app
-└── [your-features]/   # AI-generated features will be added here
-
-pubspec.yaml           # Dependencies and Flutter configuration
-analysis_options.yaml # Dart/Flutter linting rules
-```
-
-## Notes
-
-- Optimized for Flutter Web compatibility
-- All packages chosen for broad platform support  
-- Follows Flutter best practices and conventions
-- Ready for AI-assisted development workflows
+The main app code is in `lib/main.dart`. Modify this file to change the app behavior.
