@@ -88,7 +88,7 @@ function PromptInput({
       >
         <div
           className={cn(
-            "border-input bg-gray-50 rounded-md border p-2",
+            "bg-transparent rounded-xl border border-border p-4",
             className,
           )}
         >
@@ -144,7 +144,7 @@ function PromptInputTextarea({
       onFocus={props.onFocus}
       onBlur={props.onBlur}
       className={cn(
-        "text-primary min-h-[44px] w-full resize-none border-none bg-transparent shadow-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 text-base sm:text-sm",
+        "text-primary min-h-[40px] w-full resize-none border-none bg-transparent shadow-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0 text-sm placeholder:text-tertiary",
         className,
       )}
       rows={1}

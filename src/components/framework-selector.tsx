@@ -28,10 +28,9 @@ export function FrameworkSelector({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="h-7 gap-2 px-2 text-xs bg-transparent border-none hover:bg-gray-100 hover:bg-opacity-50 shadow-none"
-            style={{ boxShadow: "none" }}
+            className="h-8 gap-2 px-2 text-sm bg-transparent hover:bg-transparent text-foreground-secondary hover:text-foreground transition-colors border-none shadow-none"
           >
             <Image
               src={templates[value].logo}
@@ -46,14 +45,13 @@ export function FrameworkSelector({
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="start"
-          className="min-w-[8rem] !shadow-none border border-gray-200"
-          style={{ boxShadow: "none" }}
+          className="min-w-[8rem] bg-background border border-border shadow-lg rounded-lg"
         >
           {Object.entries(templates).map(([key, template]) => (
             <DropdownMenuItem
               key={key}
               onClick={() => onChange(key)}
-              className="gap-2 text-xs"
+              className="gap-2 text-sm text-foreground-secondary hover:text-foreground hover:bg-accent/3 transition-colors"
             >
               <Image
                 src={template.logo}

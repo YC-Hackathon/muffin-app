@@ -31,83 +31,103 @@ export default function Home() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <main className="min-h-screen p-4 relative">
-        <div className="flex w-full justify-between items-center">
-          <h1 className="text-lg font-bold flex-1 sm:w-80">
-            <a href="https://www.freestyle.sh">freestyle.sh</a>
-          </h1>
-          <Image
-            className="dark:invert mx-2"
-            src={LogoSvg}
-            alt="Adorable Logo"
-            width={36}
-            height={36}
-          />
-          <div className="flex items-center gap-2 flex-1 sm:w-80 justify-end">
-            <UserButton />
+      <main className="min-h-screen bg-background">
+        {/* Simple Header */}
+        <header className="p-4 sm:p-6">
+          <div className="flex w-full justify-between items-center max-w-6xl mx-auto">
+            <h1 className="text-lg font-semibold text-foreground">
+              <a href="https://www.freestyle.sh" className="hover:text-accent transition-colors">
+                muffin.dev
+              </a>
+            </h1>
+            <div className="flex items-center gap-4">
+              <UserButton />
+            </div>
           </div>
-        </div>
+        </header>
 
-        <div>
-          <div className="w-full max-w-lg px-4 sm:px-0 mx-auto flex flex-col items-center mt-16 sm:mt-24 md:mt-32 col-start-1 col-end-1 row-start-1 row-end-1 z-10">
-            <p className="text-neutral-600 text-center mb-6 text-3xl sm:text-4xl md:text-5xl font-bold">
-              Let AI Cook
-            </p>
+        {/* Hero Section - Clean and Minimal */}
+        <div className="flex flex-col items-center justify-center px-6 py-8">
+          <div className="w-full max-w-3xl mx-auto text-center space-y-6">
+            {/* Hero Text */}
+            <div className="space-y-6">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground leading-tight">
+                Build apps with
+                <span className="block text-accent">natural language</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-foreground-secondary max-w-2xl mx-auto">
+                Describe your idea and watch it become a fully functional app. No coding skills required.
+              </p>
+            </div>
 
-            <div className="w-full relative my-5">
-              <div className="relative w-full max-w-full overflow-hidden">
-                <div className="w-full bg-accent rounded-md relative z-10 border transition-colors">
-                  <PromptInput
-                    leftSlot={
-                      <FrameworkSelector
-                        value={framework}
-                        onChange={setFramework}
-                      />
-                    }
-                    isLoading={isLoading}
-                    value={prompt}
-                    onValueChange={setPrompt}
-                    onSubmit={handleSubmit}
-                    className="relative z-10 border-none bg-transparent shadow-none focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-200 transition-all duration-200 ease-in-out "
-                  >
-                    <PromptInputTextareaWithTypingAnimation />
-                    <PromptInputActions>
-                      <Button
-                        variant={"ghost"}
-                        size="sm"
-                        onClick={handleSubmit}
-                        disabled={isLoading || !prompt.trim()}
-                        className="h-7 text-xs"
-                      >
-                        <span className="hidden sm:inline">
-                          Start Creating ⏎
-                        </span>
-                        <span className="sm:hidden">Create ⏎</span>
-                      </Button>
-                    </PromptInputActions>
-                  </PromptInput>
+            {/* Extra spacing after description */}
+            <div className="py-4"></div>
+
+            {/* Main Input - Clean like the image */}
+            <div className="w-full max-w-xl mx-auto">
+              <div className="bg-card border border-border rounded-lg p-3 transition-all duration-200 focus-within:ring-1 focus-within:ring-accent/30 focus-within:border-accent/50">
+                <div className="space-y-2">
+                  <div className="flex-1">
+                    <PromptInput
+                      isLoading={isLoading}
+                      value={prompt}
+                      onValueChange={setPrompt}
+                      onSubmit={handleSubmit}
+                      className="border-none bg-transparent shadow-none p-0"
+                    >
+                      <PromptInputTextareaWithTypingAnimation />
+                    </PromptInput>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <FrameworkSelector
+                      value={framework}
+                      onChange={setFramework}
+                    />
+                    <Button
+                      onClick={handleSubmit}
+                      disabled={isLoading || !prompt.trim()}
+                      className="bg-accent hover:bg-accent/90 text-white font-medium px-4 py-2 rounded-md transition-all duration-200 disabled:opacity-50 shrink-0"
+                    >
+                      {isLoading ? (
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <span className="hidden sm:inline">Creating...</span>
+                        </div>
+                      ) : (
+                        <span>Create →</span>
+                      )}
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Simplified Examples */}
             <Examples setPrompt={setPrompt} />
-            <div className="mt-8 mb-16">
-              <a
-                href="https://freestyle.sh"
-                className="border rounded-md px-4 py-2 mt-4 text-sm font-semibold transition-colors duration-200 ease-in-out cursor-pointer w-full max-w-72 text-center block"
-              >
-                <span className="block font-bold">
-                  By <span className="underline">freestyle.sh</span>
-                </span>
-                <span className="text-xs">
-                  JavaScript infrastructure for AI.
-                </span>
-              </a>
-            </div>
           </div>
         </div>
-        <div className="border-t py-8 mx-0 sm:-mx-4">
-          <UserApps />
+
+        {/* User Apps Section */}
+        <div className="mt-8">
+          <div className="max-w-6xl mx-auto px-6 py-6">
+            <UserApps />
+          </div>
         </div>
+
+        {/* Simple Footer */}
+        <footer className="py-4">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <p className="text-sm text-foreground-tertiary">
+              Powered by{" "}
+              <a 
+                href="https://freestyle.sh" 
+                className="text-accent hover:text-accent/80 transition-colors font-medium"
+              >
+                muffin.dev
+              </a>
+            </p>
+          </div>
+        </footer>
       </main>
     </QueryClientProvider>
   );
@@ -115,13 +135,13 @@ export default function Home() {
 
 function Examples({ setPrompt }: { setPrompt: (text: string) => void }) {
   return (
-    <div className="mt-2">
-      <div className="flex flex-wrap justify-center gap-2 px-2">
+    <div className="space-y-4">
+      <p className="text-foreground-tertiary text-sm">Try these examples:</p>
+      <div className="flex flex-wrap justify-center gap-2">
         <ExampleButton
           text="Dog Food Marketplace"
           promptText="Build a dog food marketplace where users can browse and purchase premium dog food."
           onClick={(text) => {
-            console.log("Example clicked:", text);
             setPrompt(text);
           }}
         />
@@ -129,7 +149,6 @@ function Examples({ setPrompt }: { setPrompt: (text: string) => void }) {
           text="Personal Website"
           promptText="Create a personal website with portfolio, blog, and contact sections."
           onClick={(text) => {
-            console.log("Example clicked:", text);
             setPrompt(text);
           }}
         />
@@ -137,7 +156,6 @@ function Examples({ setPrompt }: { setPrompt: (text: string) => void }) {
           text="Burrito B2B SaaS"
           promptText="Build a B2B SaaS for burrito shops to manage inventory, orders, and delivery logistics."
           onClick={(text) => {
-            console.log("Example clicked:", text);
             setPrompt(text);
           }}
         />

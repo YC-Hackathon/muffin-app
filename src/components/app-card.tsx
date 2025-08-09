@@ -41,35 +41,35 @@ export function AppCard({ id, name, createdAt, onDelete }: AppCardProps) {
   };
 
   return (
-    <Card className="p-3 sm:p-4 border-b border rounded-md h-32 sm:h-36 relative w-full">
-      <Link href={`/app/${id}`} className="cursor-pointer block">
-        <CardHeader className="p-0">
-          <CardTitle className="text-sm sm:text-base truncate">
+    <Card className="bg-card border border-border p-4 sm:p-6 rounded-2xl h-32 sm:h-36 relative w-full transition-all duration-200 hover:border-accent/20 hover:bg-accent/2 group shadow-lg hover:shadow-xl">
+      <Link href={`/app/${id}`} className="cursor-pointer block h-full">
+        <CardHeader className="p-0 h-full flex flex-col justify-between">
+          <CardTitle className="text-base sm:text-lg truncate text-foreground group-hover:text-foreground transition-colors">
             {name}
           </CardTitle>
-          <CardDescription className="text-xs sm:text-sm">
+          <CardDescription className="text-sm text-foreground-tertiary">
             Created {createdAt.toLocaleDateString()}
           </CardDescription>
         </CardHeader>
       </Link>
 
-      <div className="absolute top-2 right-2 transition-opacity">
+      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none">
-              <MoreVertical className="h-4 w-4" />
+            <button className="p-2 rounded-xl bg-card border border-border hover:bg-accent/5 focus:outline-none transition-all duration-200 shadow-md">
+              <MoreVertical className="h-4 w-4 text-foreground-secondary" />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={handleOpen}>
+          <DropdownMenuContent align="end" className="bg-card border border-border rounded-xl shadow-xl">
+            <DropdownMenuItem onClick={handleOpen} className="text-foreground-secondary hover:text-foreground hover:bg-accent/5">
               <ExternalLink className="mr-2 h-4 w-4" />
               Open
             </DropdownMenuItem>
 
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator className="bg-border" />
             <DropdownMenuItem
               onClick={handleDelete}
-              className="text-red-600 dark:text-red-400"
+              className="text-red-400 hover:text-red-300 hover:bg-red-500/10"
             >
               <Trash className="mr-2 h-4 w-4" />
               Delete
