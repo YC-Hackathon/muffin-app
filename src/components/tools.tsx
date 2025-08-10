@@ -165,10 +165,10 @@ function EditFileTool({
                 <CodeBlockCode
                   code={edit.oldText?.split("\n").slice(0, 5).join("\n")}
                   language={"tsx"}
-                  className="col-start-1 col-end-1 row-start-1 row-end-1 overflow-visible [&>pre]:py-0! [&_code]:bg-red-200! bg-red-200"
+                  className="col-start-1 col-end-1 row-start-1 row-end-1 overflow-visible [&>pre]:py-0! [&_code]:bg-red-900/30! [&_code]:text-red-200! bg-red-900/30"
                 />
                 {edit.oldText?.split("\n").length > 5 && (
-                  <div className="text-red-700 px-4 text-xs font-mono">
+                  <div className="text-red-300 px-4 text-xs font-mono">
                     +{edit.oldText?.split("\n").length - 5} more
                   </div>
                 )}
@@ -179,7 +179,7 @@ function EditFileTool({
                     .slice(0, 5)
                     .join("\n")}
                   language={"tsx"}
-                  className="col-start-1 col-end-1 row-start-1 row-end-1 overflow-visible [&>pre]:py-0! [&_code]:bg-green-200! bg-green-200"
+                  className="col-start-1 col-end-1 row-start-1 row-end-1 overflow-visible [&>pre]:py-0! [&_code]:bg-green-900/30! [&_code]:text-green-200! bg-green-900/30"
                 />
                 {edit.newText?.split("\n").length > 5 && (
                   <div className="text-green-700 px-4 text-xs font-mono">
@@ -232,10 +232,10 @@ function WriteFileTool({
                 .join("\n") ?? ""
             }
             language={"tsx"}
-            className="col-start-1 col-end-1 row-start-1 row-end-1 overflow-visible [&_code]:bg-green-200! bg-green-200"
+            className="col-start-1 col-end-1 row-start-1 row-end-1 overflow-visible [&_code]:bg-green-900/30! [&_code]:text-green-200! bg-green-900/30"
           />
           {toolInvocation.input?.content?.split("\n").length > 5 && (
-            <div className="text-green-700 px-4 text-xs pb-2 font-mono">
+            <div className="text-green-300 px-4 text-xs pb-2 font-mono">
               +{toolInvocation.input?.content?.split("\n").length - 5} more
             </div>
           )}

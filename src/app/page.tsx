@@ -209,7 +209,7 @@ export default function Home() {
           />
           <Features />
           <SocialProof />
-          <UserAppsSection />
+          {/* <UserAppsSection /> */}
           <Footer />
         </main>
       </div>
@@ -269,19 +269,19 @@ function Hero({
           <div className="absolute -top-1 -left-1 text-[#ff4000] text-xs font-mono animate-bounce" style={{animationDelay: '1s'}}>{"[]"}</div>
         </div>
       </div>
-      <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-[rgba(242,241,238,0.08)] bg-[rgba(20,19,17,0.6)] px-3 py-1.5 text-lg text-[#B6B3AD] fade-in-up">
+      {/* <div className="mb-6 inline-flex items-center gap-2 rounded-md border border-[rgba(242,241,238,0.08)] bg-[rgba(20,19,17,0.6)] px-3 py-1.5 text-lg text-[#B6B3AD] fade-in-up">
         <span className="inline-block h-1.5 w-1.5 rounded-sm bg-[#ff4000] pulse-animation" />
         Focused. Quiet. Reliable.
-      </div>
+      </div> */}
       {/* Enhanced Title with Gradient and Floating Symbols */}
       <div className="relative mb-8">
         <h1 className="text-balance text-5xl font-semibold tracking-tight text-[#F2F1EE] sm:text-6xl md:text-7xl relative z-10 fade-in-up stagger-1">
           <span className="inline-block">
-            Build Flutter.
+            Building Flutter apps
           </span>
           <br />
           <span className="inline-block bg-gradient-to-r from-[#ff4000] via-[#ff6600] to-[#ff4000] bg-clip-text text-transparent">
-            With one sentence.
+            doesn't have to suck.
           </span>
         </h1>
         
@@ -336,7 +336,7 @@ function Hero({
                     </>
                   ) : (
                     <>
-                      <span>Build app</span>
+                      <span>Cook</span>
                       <span className="text-[#ff4000] transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300">{"→"}</span>
                     </>
                   )}
