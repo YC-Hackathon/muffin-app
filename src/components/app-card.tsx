@@ -41,9 +41,9 @@ export function AppCard({ id, name, createdAt, onDelete }: AppCardProps) {
   };
 
   return (
-    <Card className="bg-card border border-border p-4 sm:p-6 rounded-2xl h-32 sm:h-36 relative w-full transition-all duration-200 hover:border-accent/20 hover:bg-accent/2 group shadow-lg hover:shadow-xl">
+    <Card className="bg-card border border-border p-6 sm:p-8 rounded-2xl h-48 sm:h-56 relative w-full transition-all duration-200 hover:border-accent/20 hover:bg-accent/2 group shadow-lg hover:shadow-xl">
       <Link href={`/app/${id}`} className="cursor-pointer block h-full">
-        <CardHeader className="p-0 h-full flex flex-col justify-between">
+        <CardHeader className="p-0 h-full flex flex-col justify-between text-center">
           <CardTitle className="text-base sm:text-lg text-foreground group-hover:text-foreground transition-colors leading-tight break-words overflow-hidden">
             {name}
           </CardTitle>
