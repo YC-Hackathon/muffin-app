@@ -86,7 +86,7 @@ export function PromptInputBasic({
     <div className="relative w-full">
       {/* Image previews */}
       {images.length > 0 && (
-        <div className="flex flex-wrap gap-2 mb-2 p-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        <div className="flex flex-wrap gap-2 mb-2 p-3 glass glass-border rounded-lg">
           {images.map((image, index) => (
             <div key={index} className="relative group">
               <Image
@@ -115,7 +115,7 @@ export function PromptInputBasic({
         onValueChange={(value) => onValueChange?.(value)}
         isLoading={isLoading || isCompressing}
         onSubmit={handleSubmitWithData}
-        className="w-full border dark:bg-accent shadow-sm rounded-lg border-gray-300focus-within:border-gray-400 focus-within:ring-1 transition-all duration-200 ease-in-out focus-within:ring-gray-200 border-gray-300"
+        className="w-full glass glass-border rounded-xl shadow-lg focus-within:ring-2 focus-within:ring-accent/30 transition-all duration-300"
       >
         <PromptInputTextarea
           placeholder={
@@ -125,7 +125,7 @@ export function PromptInputBasic({
                 ? "Compressing images..."
                 : "Type your message here..."
           }
-          className="pr-20 bg-transparent dark:bg-transparent"
+          className="pr-20 bg-transparent text-primary placeholder:text-tertiary"
           disabled={disabled}
         />
       </PromptInput>
@@ -143,7 +143,7 @@ export function PromptInputBasic({
         <Button
           variant="ghost"
           size="icon"
-          className="h-8 w-8 rounded-full"
+          className="h-8 w-8 rounded-full hover:bg-accent/10 text-secondary hover:text-primary transition-all duration-200"
           onClick={() => fileInputRef.current?.click()}
           disabled={isGenerating || disabled}
         >
@@ -154,7 +154,7 @@ export function PromptInputBasic({
           <Button
             variant={"default"}
             size="icon"
-            className="h-8 w-8 rounded-full"
+            className="h-8 w-8 rounded-full bg-accent hover:bg-accent/90 transition-all duration-200"
             onClick={stop}
           >
             <SquareIcon className="h-4 w-4" />
@@ -163,7 +163,7 @@ export function PromptInputBasic({
           <Button
             variant={"default"}
             size="icon"
-            className="h-8 w-8 rounded-full"
+            className="h-8 w-8 rounded-full bg-accent hover:bg-accent/90 hover:scale-105 transition-all duration-200 disabled:opacity-50"
             disabled={
               isGenerating ||
               disabled ||

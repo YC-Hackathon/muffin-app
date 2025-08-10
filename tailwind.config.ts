@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        mono: ['var(--font-ibm-plex-mono)', 'monospace'],
+      },
       backgroundImage: {
         'grid-pattern': 'radial-gradient(circle, #000 1px, transparent 1px)',
       },

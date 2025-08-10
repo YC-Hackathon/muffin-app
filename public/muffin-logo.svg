@@ -1,0 +1,23 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="512" height="512" fill="#000000"/>
+<!-- Muffin Top -->
+<path d="M96 150C96 120 120 96 150 96C180 96 204 120 204 150C220 130 244 116 272 116C300 116 324 130 340 150C340 120 364 96 394 96C424 96 448 120 448 150C448 180 472 204 502 204C502 234 478 258 448 258H96C66 258 42 234 42 204C72 204 96 180 96 150Z" fill="#FF6600"/>
+<!-- Muffin Bottom -->
+<path d="M128 258H416C437 258 454 275 454 296V384C454 405 437 422 416 422H128C107 422 90 405 90 384V296C90 275 107 258 128 258Z" fill="#FF6600"/>
+<!-- Muffin Lines -->
+<rect x="140" y="310" width="8" height="80" rx="4" fill="#000000"/>
+<rect x="170" y="310" width="8" height="80" rx="4" fill="#000000"/>
+<rect x="200" y="310" width="8" height="80" rx="4" fill="#000000"/>
+<rect x="230" y="310" width="8" height="80" rx="4" fill="#000000"/>
+<rect x="260" y="310" width="8" height="80" rx="4" fill="#000000"/>
+<rect x="290" y="310" width="8" height="80" rx="4" fill="#000000"/>
+<rect x="320" y="310" width="8" height="80" rx="4" fill="#000000"/>
+<rect x="350" y="310" width="8" height="80" rx="4" fill="#000000"/>
+<rect x="380" y="310" width="8" height="80" rx="4" fill="#000000"/>
+<!-- Muffin Spots -->
+<circle cx="160" cy="180" r="8" fill="#000000"/>
+<circle cx="220" cy="160" r="12" fill="#000000"/>
+<circle cx="290" cy="170" r="10" fill="#000000"/>
+<circle cx="350" cy="165" r="9" fill="#000000"/>
+<circle cx="410" cy="185" r="11" fill="#000000"/>
+</svg>

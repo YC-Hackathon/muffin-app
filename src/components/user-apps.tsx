@@ -15,16 +15,19 @@ export function UserApps() {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 sm:px-8">
-      {data.map((app) => (
-        <AppCard 
-          key={app.id}
-          id={app.id}
-          name={app.name}
-          createdAt={app.createdAt}
-          onDelete={onAppDeleted}
-        />
-      ))}
+    <div className="flex justify-center items-center min-h-[200px]">
+      <div className="flex flex-wrap justify-center gap-4 px-4 sm:px-8 max-w-7xl">
+        {data.map((app) => (
+          <div key={app.id} className="w-full max-w-2xl">
+            <AppCard 
+              id={app.id}
+              name={app.name}
+              createdAt={app.createdAt}
+              onDelete={onAppDeleted}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

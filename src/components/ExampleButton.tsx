@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 interface ExampleButtonProps {
   text: string;
@@ -20,9 +21,10 @@ export function ExampleButton({
     <Button
       variant="outline"
       size="sm"
-      className={`hover:bg-gray-100 hover:border-gray-300 active:scale-95 transition-all duration-200 rounded-full ${
-        className || ""
-      }`}
+      className={cn(
+        "text-foreground-secondary border-border bg-transparent hover:text-foreground hover:border-accent/30 hover:bg-accent/5 transition-all duration-200 rounded-xl text-sm px-4 py-2",
+        className
+      )}
       onClick={() => onClick(promptText)}
       type="button"
     >
